@@ -5,14 +5,63 @@ Aplikasi ini dipakai untuk mengelola invoice dan menyambungkan dengan berbagai m
 Diantara metode pembayaran yang akan di support antara lain:
 
 * Virtual Account
-  * Bank BNI
-  * Bank CIMB
-  * Bank BSI
+    * Bank BNI
+    * Bank CIMB
+    * Bank BSI
 
 * e-Wallet
-  * Ovo
-  * Gopay
-   
-* QR Payment
-  * QRIS
+    * Ovo
+    * Gopay
 
+* QR Payment
+    * QRIS
+
+---
+
+## How to
+
+### Cara Setup Database
+
+1. Jalankan postgresql di docker
+
+`Bash`
+
+```shell
+docker run --rm \
+  --name invoice-db \
+  -e POSTGRES_DB=invoicedb \
+  -e POSTGRES_USER=invoice \
+  -e POSTGRES_PASSWORD=hFgtQo8U8YPM9BwgK87G \
+  -e PGDATA=/var/lib/postgresql/data/pgdata \
+  -v "$PWD/invoicedb-data:/var/lib/postgresql/data" \
+  -p 5432:5432 \
+  postgres:14
+```
+
+`Powershell`
+
+```shell
+docker run --rm  `
+  --name invoice-db `
+  -e POSTGRES_DB=invoicedb `
+  -e POSTGRES_USER=invoice `
+  -e POSTGRES_PASSWORD=hFgtQo8U8YPM9BwgK87G `
+  -e PGDATA=/var/lib/postgresql/data/pgdata `
+  -v "$PWD/invoicedb-data:/var/lib/postgresql/data" `
+  -p 5432:5432 `
+  postgres:14
+```
+
+`Command prompt`
+
+```shell
+docker run --rm  ^
+  --name invoice-db ^
+  -e POSTGRES_DB=invoicedb ^
+  -e POSTGRES_USER=invoice ^
+  -e POSTGRES_PASSWORD=hFgtQo8U8YPM9BwgK87G ^
+  -e PGDATA=/var/lib/postgresql/data/pgdata ^
+  -v "$PWD/invoicedb-data:/var/lib/postgresql/data" ^
+  -p 5432:5432 ^
+  postgres:14
+```
