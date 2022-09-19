@@ -16,6 +16,12 @@ Diantara metode pembayaran yang akan di support antara lain:
 * QR Payment
     * QRIS
 
+Tipe tagihan yang tersedia:
+
+  * CLOSED: bayar sesuai nominal. kalau tidak sesuai, ditolak
+  * OPEN: pembayaran berapapun diterima
+  * INSTALLMENT: pembayaran diterima selama total akumulasi lebih kecil atau sama dengan nilai tagihan
+
 ---
 
 ## How to
@@ -52,16 +58,3 @@ docker run --rm  `
   postgres:14
 ```
 
-`Command prompt`
-
-```shell
-docker run --rm  ^
-  --name invoice-db ^
-  -e POSTGRES_DB=invoicedb ^
-  -e POSTGRES_USER=invoice ^
-  -e POSTGRES_PASSWORD=hFgtQo8U8YPM9BwgK87G ^
-  -e PGDATA=/var/lib/postgresql/data/pgdata ^
-  -v "$PWD/invoicedb-data:/var/lib/postgresql/data" ^
-  -p 5432:5432 ^
-  postgres:14
-```
