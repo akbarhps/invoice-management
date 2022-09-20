@@ -1,3 +1,26 @@
+create table running_number
+(
+    id          varchar(36)  not null
+        primary key,
+    prefix      varchar(100) not null,
+    last_number bigint       not null
+);
+
+create table customer
+(
+    id            varchar(36)  not null
+        primary key,
+    created_at    timestamp,
+    created_by    varchar(255),
+    record_status varchar(255) not null,
+    updated_at    timestamp,
+    updated_by    varchar(255),
+    code          varchar(100) not null,
+    name          varchar(255) not null,
+    email         varchar(100) not null,
+    mobile_phone  varchar(30)  not null
+);
+
 create table payment_provider
 (
     id            varchar(36)  not null
@@ -51,7 +74,10 @@ create table invoice
     is_paid         boolean        not null,
     id_invoice_type varchar(255)
         constraint fkco4sbxv9cj2oevm6cdpq76ffb
-            references invoice_type
+            references invoice_type,
+    id_customer     varchar(255)
+        constraint fk_invoice_id_customer
+            references customer
 );
 
 alter table invoice
@@ -59,24 +85,14 @@ alter table invoice
 
 create table invoice_type_provider
 (
-    id_invoice_type     varchar(36) not null,
+    id_invoice_type     varchar(36) not null
+        constraint fk_invoice_type_provider_provider
+            references invoice_type,
     id_payment_provider varchar(36) not null
+        constraint fk_invoice_type_provider_type
+            references invoice_type,
+    primary key (id_invoice_type, id_payment_provider)
 );
-
-alter table only invoice_type_provider
-    add constraint invoice_type_provider_key
-        primary key (id_invoice_type, id_payment_provider);
-
-alter table only invoice_type_provider
-    add constraint fk_invoice_type_provider_type
-        foreign key (id_invoice_type)
-            references invoice_type (id);
-
-alter table only invoice_type_provider
-    add constraint fk_invoice_type_provider_provider
-        foreign key (id_payment_provider)
-            references invoice_type (id);
-
 
 create table virtual_account
 (

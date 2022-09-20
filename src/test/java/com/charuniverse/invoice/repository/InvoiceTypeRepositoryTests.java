@@ -15,7 +15,7 @@ import java.util.Optional;
         "/sql/delete-invoice-type.sql",
         "/sql/insert-invoice-type.sql"
 })
-public class InvoiceTypeRepositoryTest {
+public class InvoiceTypeRepositoryTests {
 
     @Autowired
     InvoiceTypeRepository invoiceTypeRepository;
